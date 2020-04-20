@@ -1,23 +1,44 @@
 import React from 'react'
-import { connect } from 'react-redux'
-import Roller from './Roller'
+import { useSelector } from 'react-redux'
+import { useFirestoreConnect, isLoaded, isEmpty } from "react-redux-firebase";
+import AddRole from './AddRole'
+import Roll from './Roll'
 
-const mapStateToProps = state => {
-  console.log('entire state', state)
-  return { rolls: state.rolls }
+function Rolls() {
+  useFirestoreConnect(
+    [
+      {
+        collection: 'rolls',
+        orderBy: ['createdAt', 'desc']
+      }
+    ]
+  )
+
+  const rolls = useSelector(({ firestore: { data } }) => data.rolls)
+
+  return (
+    <div className='Rolls'>
+      <AddRole />
+      <div className='Rolls__results'>
+        {resultsContent(rolls)}
+      </div>
+    </div>
+  )
 }
 
-const ConnectedRolls = ({ rolls }) => (
-  <div>
-    <Roller />
-    <div>
-      {rolls.map((roll, i) => (
-        <div className='roll' key={i}>You rolled {roll.die} and got {roll.result}</div>
-      ))}
-    </div>
+function resultsContent(rolls) {
+  if (!isLoaded(rolls)) {
+    return 'Loading...'
+  }
 
-  </div>
-)
+  if (isEmpty(rolls)) {
+    return 'Nothing here, get rolling...'
+  }
 
-const Rolls = connect(mapStateToProps)(ConnectedRolls)
+  return Object.keys(rolls).map((key, i) => {
+    const roll = rolls[key]
+    return (<Roll key={`${key}-${i}`} id={key} {...roll} />)
+  })
+}
+
 export default Rolls

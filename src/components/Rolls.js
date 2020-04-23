@@ -1,7 +1,7 @@
 import React from 'react'
 import { useSelector } from 'react-redux'
 import { useFirestoreConnect, isLoaded, isEmpty } from "react-redux-firebase";
-import AddRole from './AddRole'
+import AddRole from './AddRoll'
 import Roll from './Roll'
 
 function Rolls() {
@@ -14,7 +14,7 @@ function Rolls() {
     ]
   )
 
-  const rolls = useSelector(({ firestore: { data } }) => data.rolls)
+  const rolls = useSelector(({ firestore: { ordered } }) => ordered.rolls)
 
   return (
     <div className='Rolls'>

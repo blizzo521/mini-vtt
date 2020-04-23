@@ -27,3 +27,7 @@ body {
 .Rolls__results {
   color: #ccc;
 }
+
+.rollFormatError {
+  color: darkorange;
+}

@@ -12,3 +12,9 @@
 .Roll__delete {
   margin-left: 10px;
 }
+.Roll__dice {
+  color: darkred;
+}
+.Roll__roller {
+  color: RoyalBlue;
+}

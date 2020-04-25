@@ -2,7 +2,6 @@
 import React, { useState } from 'react'
 import { useFirestore } from 'react-redux-firebase'
 import Firebase from 'firebase'
-
 import { DiceRoller } from 'rpg-dice-roller'
 
 import d4Icon from '../assets/d4.png'
@@ -11,6 +10,7 @@ import d8Icon from '../assets/d8.png'
 import d10Icon from '../assets/d10.png'
 import d12Icon from '../assets/d12.png'
 import d20Icon from '../assets/d20.png'
+import diceSound from '../assets/dice.wav'
 
 import './Roller.css'
 
@@ -21,6 +21,7 @@ function Roller() {
   const [value, setValue] = useState('')
   const [formatError, setFormatError] = useState(false)
   const [saving, setSaving] = useState(false)
+  const rollSound = new Audio(diceSound)
 
   const firestore = useFirestore()
 
@@ -39,6 +40,7 @@ function Roller() {
   }
 
   function saveRoll(die, result, explain) {
+    rollSound.play()
     if (saving === true) {
       return
     }

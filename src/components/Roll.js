@@ -16,13 +16,19 @@ function Roll({ id }) {
   }
 
   if(!roll) {
-    return null;
+    return null
+  }
+
+  function prepareDie(die) {
+    return die.replace(/cs.*/, '')
   }
 
   return (
     <div className='Roll'>
       <div className='Roll__message'>
-        Somebody rolled {roll.die} and got <span className='Roll__total'>{roll.result}</span>
+        <span className='Roll__roller'>Somebody </span>
+        rolled <span className='Roll__dice'>{prepareDie(roll.die)} </span>
+        and got <span className='Roll__total'>{roll.result}</span>
         <button className='Roll__delete' onClick={deleteRoll}>X</button>
       </div>
       <div className='Roll__explain'>

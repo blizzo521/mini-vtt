@@ -1,4 +1,12 @@
+.Rolls {
+  background-color: lightgrey;
+  border-radius: 5px;
+  width: 400px;
+  padding: 10px;
+}
+
 .Rolls__results {
-  color: #ccc;
+  height: 400px;
+  overflow: scroll;
 }
   

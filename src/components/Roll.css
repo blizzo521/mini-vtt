@@ -1,3 +1,14 @@
 .Roll {
   font-size: 12px;
 }
+
+.Roll__explain {
+  color: #888;
+  margin-left: 10px;
+}
+.Roll__total {
+  font-weight: bold;
+}
+.Roll__delete {
+  margin-left: 10px;
+}

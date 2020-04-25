@@ -5,8 +5,6 @@ import './Header.css'
 
 function Header() {
   const user = useContext(UserContext)
-  console.log(user)
-  debugger
 
   function signOutOfGoogle() {
     firebase.auth().signOut().then(function() {

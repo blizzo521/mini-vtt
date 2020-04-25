@@ -26,19 +26,19 @@ function Roller() {
 
   function rollDie(die) {
     const roll = roller.roll(die)
-    saveRoll(die, roll.total)
+    saveRoll(die, roll.total, roll.toString())
   }
 
   function addTextRoll() {
     try {
-      const result = roller.roll(value)  
-      saveRoll(value, result.total)
+      const roll = roller.roll(value)  
+      saveRoll(value, roll.total, roll.toString())
     } catch (error) {
       setFormatError(true)
     }
   }
 
-  function saveRoll(die, result) {
+  function saveRoll(die, result, explain) {
     if (saving === true) {
       return
     }
@@ -48,6 +48,7 @@ function Roller() {
       .add({ 
         die: die, 
         result: result, 
+        explain: explain,
         createdAt: serverTimestamp() })
       .then(() => {
         setSaving(false)
@@ -67,7 +68,7 @@ function Roller() {
   function rollD8() { rollDie('1d8') }
   function rollD10() { rollDie('1d10') }
   function rollD12() { rollDie('1d12') }
-  function rollD20() { rollDie('1d20') }
+  function rollD20() { rollDie('1d20cs=20cf=1') }
 
   return (
     <div>

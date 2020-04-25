@@ -15,10 +15,19 @@ function Roll({ id }) {
     return firestore.collection('rolls').doc(id).delete()
   }
 
+  if(!roll) {
+    return null;
+  }
+
   return (
     <div className='Roll'>
-      You rolled {roll.die} and got {roll.result}
-      <button onClick={deleteRoll}>X</button>
+      <div className='Roll__message'>
+        Somebody rolled {roll.die} and got <span className='Roll__total'>{roll.result}</span>
+        <button className='Roll__delete' onClick={deleteRoll}>X</button>
+      </div>
+      <div className='Roll__explain'>
+        {roll.explain}
+      </div>
     </div>
   )
 }

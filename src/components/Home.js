@@ -1,5 +1,4 @@
 import React, { useContext } from 'react'
-import { Router } from '@reach/router'
 
 import { UserContext } from '../contexts/UserContext'
 import Table from './Table'

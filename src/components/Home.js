@@ -1,15 +1,27 @@
-import React from 'react'
-import Rolls from './Rolls'
-import './App.css'
+import {React, useContext} from 'react'
+import { Router } from '@reach/router'
+// import { UserContext } from '../providers/UserProvider';
+
+import SignIn from './SignIn';
+import SignUp from './SignUp';
+import Table from './Table';
+import PasswordReset from './PasswordReset';
 
 function Home() {
+  // const user = useContext(UserContext);
+  const user = null
+  console.log('user', user)
+
+  if (user) {
+    return <Table />
+  }
+
   return (
-    <div className="App">
-      <div className="App-header">
-        <h2>Mini-VTT</h2>
-      </div>
-      <Rolls />
-    </div>
+    <Router>
+      <SignUp path='signUp' />
+      <SignIn path='/' />
+      <PasswordReset path='passwordReset' />
+    </Router>
   )
 }
 

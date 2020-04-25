@@ -1,0 +1,10 @@
+.Roller__error {
+  color: darkorange;
+}
+
+.Roller__die {
+  height: 50px;
+  width: 50px;
+  margin: 5px;
+  cursor: pointer;
+}

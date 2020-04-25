@@ -1,15 +1,23 @@
-import React from 'react'
-import Rolls from './Rolls'
-import './App.css'
+import React, { useContext } from 'react'
+import Table from './Table'
+import { Router } from '@reach/router'
+
+import SignIn from './SignIn'
+import { UserContext } from '../contexts/UserContext'
+
+import './Home.css'
 
 function Home() {
+  const user = useContext(UserContext)
+
+  if (user) {
+    return <Table />
+  }
+
   return (
-    <div className="App">
-      <div className="App-header">
-        <h2>Mini-VTT</h2>
-      </div>
-      <Rolls />
-    </div>
+    <Router>
+      <SignIn path='/' />
+    </Router>
   )
 }
 

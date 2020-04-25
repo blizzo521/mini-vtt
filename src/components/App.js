@@ -3,20 +3,22 @@ import { Provider } from 'react-redux'
 import firebase from 'firebase/app'
 import 'firebase/auth'
 import 'firebase/database'
-import 'firebase/firestore' // make sure you add this for firestore
+import 'firebase/firestore'
 import { ReactReduxFirebaseProvider } from 'react-redux-firebase'
 import { createFirestoreInstance } from 'redux-firestore'
 import Home from './Home'
 import configureStore from '../store'
 import { firebase as fbConfig, rrfConfig } from './config'
-import './App.css'
+import {useAuth} from '../hooks/useAuth'
+import {UserContext} from '../contexts/UserContext'
 
-const initialState = window && window.__INITIAL_STATE__ // set initial state here
+const initialState = window && window.__INITIAL_STATE__
 const store = configureStore(initialState)
-// Initialize Firebase instance
 firebase.initializeApp(fbConfig)
 
 export default function App() {
+  const { user } = useAuth()
+
   return (
     <Provider store={store}>
       <ReactReduxFirebaseProvider
@@ -24,7 +26,9 @@ export default function App() {
         config={rrfConfig}
         dispatch={store.dispatch}
         createFirestoreInstance={createFirestoreInstance}>
-        <Home />
+          <UserContext.Provider value={user}>
+            <Home />
+          </UserContext.Provider>
       </ReactReduxFirebaseProvider>
     </Provider>
   )

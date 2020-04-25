@@ -1,11 +1,12 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { useSelector } from 'react-redux'
-import { useFirestore } from 'react-redux-firebase';
+import { useFirestore } from 'react-redux-firebase'
 
+import './Roll.css'
 
 function Roll({ id }) {
-  const firestore = useFirestore();
+  const firestore = useFirestore()
   const roll = useSelector(
     ({ firestore: { data } }) => data.rolls && data.rolls[id]
   )
@@ -15,7 +16,7 @@ function Roll({ id }) {
   }
 
   return (
-    <div className="Roll">
+    <div className='Roll'>
       You rolled {roll.die} and got {roll.result}
       <button onClick={deleteRoll}>X</button>
     </div>

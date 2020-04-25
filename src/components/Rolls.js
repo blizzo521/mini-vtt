@@ -1,8 +1,10 @@
 import React from 'react'
 import { useSelector } from 'react-redux'
-import { useFirestoreConnect, isLoaded, isEmpty } from "react-redux-firebase";
-import AddRole from './AddRoll'
+import { useFirestoreConnect, isLoaded, isEmpty } from 'react-redux-firebase'
+import AddRole from './Roller'
 import Roll from './Roll'
+
+import './Rolls.css'
 
 function Rolls() {
   useFirestoreConnect(

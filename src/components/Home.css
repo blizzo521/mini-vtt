@@ -1,0 +1,11 @@
+body {
+  background-color: dimgray;
+}
+
+.Home {
+  font-size: 14px;
+}
+
+.Home__content {
+  margin: 10px;
+}

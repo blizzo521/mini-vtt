@@ -1,23 +1,23 @@
 import React, { useContext } from 'react'
-import Table from './Table'
 import { Router } from '@reach/router'
 
-import SignIn from './SignIn'
 import { UserContext } from '../contexts/UserContext'
+import Table from './Table'
+import SignIn from './SignIn'
+import Header from './Header'
 
 import './Home.css'
 
 function Home() {
   const user = useContext(UserContext)
 
-  if (user) {
-    return <Table />
-  }
-
   return (
-    <Router>
-      <SignIn path='/' />
-    </Router>
+    <div className="Home">
+      <Header />
+      <div className="Home__content">
+        {user ? <Table /> : <SignIn />}
+      </div>
+    </div>
   )
 }
 

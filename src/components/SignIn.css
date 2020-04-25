@@ -1,0 +1,35 @@
+.SignIn {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.SignIn__greeting {
+  flex: 0 1 auto;
+  width: 300px;
+  background: lightgrey;
+  padding: 10px;
+  margin-top: 10px;
+  border-radius: 5px;;
+}
+
+.SignIn__header {
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.SignIn__message {
+  margin-top: 10px;
+}
+
+.SignIn__button {
+  flex: 0 1 auto;
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+.SignIn__dragon {
+  margin-top: 10px;
+  height: 300px;
+}

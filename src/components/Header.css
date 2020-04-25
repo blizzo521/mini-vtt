@@ -1,0 +1,40 @@
+.Header {
+  background-color: darkred;
+  padding: 10px;
+  position: relative;
+}
+
+.Header__title {
+  color: #fff;
+  font-weight: bold;
+  font-size: 16px;
+  text-align: center;
+}
+
+.Header__controls {
+  position: absolute;
+  right: 5px;
+  top: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.Header__controls button {
+  font-size: 16px;
+  border: none;
+  background: none;
+  color: #fff;
+  flex: 0 1 auto;
+  cursor: pointer;
+}
+
+.Header__controls button:hover {
+  text-decoration: underline;
+}
+
+.Header__avatar {
+  width: 30px;
+  border-radius: 15px;
+  flex: 0 1 auto;
+}

@@ -1,7 +1,8 @@
 import React, { useContext } from 'react'
 
 import { UserContext } from '../contexts/UserContext'
-import Table from './Table'
+import Tables from './Tables'
+import Rolls from './Rolls'
 import SignIn from './SignIn'
 import Header from './Header'
 
@@ -14,7 +15,7 @@ function Home() {
     <div className="Home">
       <Header />
       <div className="Home__content">
-        {user ? <Table /> : <SignIn />}
+        {user ? <Tables /> : <SignIn />}
       </div>
     </div>
   )

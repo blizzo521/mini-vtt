@@ -1,0 +1,6 @@
+.Box {
+  background-color: lightgrey;
+  border-radius: 5px;
+  width: 400px;
+  padding: 10px;
+}

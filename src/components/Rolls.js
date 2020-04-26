@@ -3,6 +3,7 @@ import { useSelector } from 'react-redux'
 import { useFirestoreConnect, isLoaded, isEmpty } from 'react-redux-firebase'
 import AddRole from './Roller'
 import Roll from './Roll'
+import Box from './lib/Box'
 
 import './Rolls.css'
 
@@ -19,12 +20,12 @@ function Rolls() {
   const rolls = useSelector(({ firestore: { ordered } }) => ordered.rolls)
 
   return (
-    <div className='Rolls'>
+    <Box className='Rolls'>
       <AddRole />
       <div className='Rolls__results'>
         {resultsContent(rolls)}
       </div>
-    </div>
+    </Box>
   )
 }
 

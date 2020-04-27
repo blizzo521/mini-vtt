@@ -1,21 +1,32 @@
 import React, { useContext } from 'react'
+import { useRoutes, navigate } from 'hookrouter'
 
 import { UserContext } from '../contexts/UserContext'
 import Tables from './Tables'
-import Rolls from './Rolls'
+import Table from './Table'
 import SignIn from './SignIn'
 import Header from './Header'
 
 import './Home.css'
 
+const routes = {
+  '/signin': () => <SignIn />,
+  '/tables': () => <Tables />,
+  '/table/:id': ({id}) => <Table id={id} />,
+}
+
 function Home() {
-  const user = useContext(UserContext)
+  const routeResult = useRoutes(routes)
+
+  if (!routeResult) {
+    navigate('/signin')
+  }
 
   return (
     <div className="Home">
       <Header />
       <div className="Home__content">
-        {user ? <Tables /> : <SignIn />}
+        {routeResult || <div>Not Found</div>}
       </div>
     </div>
   )

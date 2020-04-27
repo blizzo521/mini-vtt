@@ -4,22 +4,24 @@ import './SignIn.css'
 
 import googleSignInButton from '../assets/btn_google_signin_dark_normal_web.png'
 import wyvern from '../assets/dragon.png'
+import { navigate } from 'hookrouter'
 
 var provider = new firebase.auth.GoogleAuthProvider()
 
 function SignIn() {
   function signIntoGoogle() {
-    firebase.auth().signInWithPopup(provider).then(function(result) {
+    firebase.auth().signInWithPopup(provider).then(result => {
       // const token = result.credential.accessToken
       // const user = result.user
-    }).catch(function(error) {
+      navigate('/tables')
+    }).catch(error => {
       // const errorCode = error.code
       // const errorMessage = error.message
       // const email = error.email
       // const credential = error.credential
     })
   }
-  
+
   return (
     <div className='SignIn'>
       <div className='SignIn__greeting'>

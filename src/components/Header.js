@@ -2,6 +2,7 @@ import React, {useContext} from 'react'
 import firebase from 'firebase'
 import { UserContext } from '../contexts/UserContext'
 import './Header.css'
+import { navigate } from 'hookrouter'
 
 function Header() {
   const user = useContext(UserContext)
@@ -9,6 +10,7 @@ function Header() {
   function signOutOfGoogle() {
     firebase.auth().signOut().then(function() {
         // Sign-out successful.
+        navigate('/')
     }).catch(function(error) {
         // An error happened.
     })

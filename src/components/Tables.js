@@ -6,6 +6,7 @@ import Firebase from 'firebase'
 
 import Box from './lib/Box'
 import './Tables.css'
+import { A } from 'hookrouter'
 const serverTimestamp = Firebase.firestore.FieldValue.serverTimestamp
 
 function Tables() {
@@ -27,7 +28,7 @@ function Tables() {
   return (
     <Box className='Tables'>
       <p>A table is what you gather around to play a game! See what tables you belong to here, or create a new one!</p>
-      <div className='Tables__results'>
+      <div className='Tables__tableLinks'>
         {resultsContent(tables)}
       </div>
       <div className='Tables__createNew'>
@@ -65,12 +66,8 @@ function Tables() {
     return Object.keys(tables).map((key, i) => {
       const table = tables[key]
       return (
-        <div className='Tables__table'>
-          <a href='#'>{table.name}</a>
-        </div>
+        <A className='Tables__tableLink' href={`/table/${table.id}`} key={i}>{table.name}</A>
       )
-      // return <div key={i}>some table</div>
-      // return (<Table key={`${key}-${i}`} id={key} {...table} />)
     })
   }
 }

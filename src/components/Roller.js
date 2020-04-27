@@ -17,7 +17,8 @@ import './Roller.css'
 const serverTimestamp = Firebase.firestore.FieldValue.serverTimestamp
 const roller = new DiceRoller()
 
-function Roller() {
+function Roller(props) {
+  const tableId = props.tableId
   const [value, setValue] = useState('')
   const [formatError, setFormatError] = useState(false)
   const [saving, setSaving] = useState(false)
@@ -46,7 +47,7 @@ function Roller() {
     }
     setSaving(true)
     return firestore
-      .collection('rolls')
+      .collection(`/tables/${tableId}/rolls`)
       .add({ 
         die: die, 
         result: result, 

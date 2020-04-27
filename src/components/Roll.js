@@ -1,22 +1,13 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { useSelector } from 'react-redux'
-import { useFirestore } from 'react-redux-firebase'
+import { firestore } from 'firebase'
 
 import './Roll.css'
 
-function Roll({ id }) {
-  const firestore = useFirestore()
-  const roll = useSelector(
-    ({ firestore: { data } }) => data.rolls && data.rolls[id]
-  )
 
+function Roll(props) {
   function deleteRoll() {
-    return firestore.collection('rolls').doc(id).delete()
-  }
-
-  if(!roll) {
-    return null
+    return firestore.collection('rolls').doc(props.id).delete()
   }
 
   function prepareDie(die) {
@@ -27,12 +18,12 @@ function Roll({ id }) {
     <div className='Roll'>
       <div className='Roll__message'>
         <span className='Roll__roller'>Somebody </span>
-        rolled <span className='Roll__dice'>{prepareDie(roll.die)} </span>
-        and got <span className='Roll__total'>{roll.result}</span>
+        rolled <span className='Roll__dice'>{prepareDie(props.die)} </span>
+        and got <span className='Roll__total'>{props.result}</span>
         <button className='Roll__delete' onClick={deleteRoll}>X</button>
       </div>
       <div className='Roll__explain'>
-        {roll.explain}
+        {props.explain}
       </div>
     </div>
   )

@@ -6,6 +6,8 @@ import Tables from './Tables'
 import Table from './Table'
 import SignIn from './SignIn'
 import Header from './Header'
+import Monsters from './Monsters'
+import Monster from './Monster'
 
 import './Home.css'
 
@@ -13,6 +15,8 @@ const routes = {
   '/signin': () => <SignIn />,
   '/tables': () => <Tables />,
   '/table/:id': ({id}) => <Table id={id} />,
+  '/monsters': () => <Monsters />,
+  '/monster/:id': ({id}) => <Monster id={id} />,
 }
 
 function Home() {

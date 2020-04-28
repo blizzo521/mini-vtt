@@ -10,6 +10,7 @@ import Monsters from './Monsters'
 import Monster from './Monster'
 
 import './Home.css'
+import { useAuth } from '../hooks/useAuth'
 
 const routes = {
   '/signin': () => <SignIn />,
@@ -20,20 +21,53 @@ const routes = {
 }
 
 function Home() {
+  console.log('HOME =====================================')
   const routeResult = useRoutes(routes)
+  const { user, initializing} = useAuth()
 
-  if (!routeResult) {
-    navigate('/signin')
+  function isSignIn() {
+    return routeResult && routeResult.type === SignIn
   }
+
+console.log('a', user, initializing)
+
+  // dont load anything until auth is done
+  if (initializing !== false) {
+    return (
+      <div className="Home">
+        <Header />
+        <div className="Home__content"></div>
+      </div>
+    )
+  }
+
+  console.log('b', user, initializing, isSignIn() ? 'SignIn' : 'not SignIn')
+
+  // if no auth, send anything not signin to signin
+  if (!user && !isSignIn()) {
+    navigate('/signin')
+    return
+  }
+
+  console.log('c', user, initializing, isSignIn() ? 'SignIn' : 'not SignIn')
+
+  // default to tables
+  if (!routeResult) {
+    navigate('/tables')
+    return
+  }
+
+  console.log('d', user, initializing, isSignIn() ? 'SignIn' : 'not SignIn')
 
   return (
     <div className="Home">
       <Header />
       <div className="Home__content">
-        {routeResult || <div>Not Found</div>}
+        {routeResult || <div />}
       </div>
     </div>
   )
+
 }
 
 export default Home

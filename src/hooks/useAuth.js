@@ -9,15 +9,15 @@ export const useAuth = () => {
       user,
     }
   })
-  
+
   function onChange(user) {
     setState({ initializing: false, user })
   }
-  
+
   React.useEffect(() => {
     const unsubscribe = firebase.auth().onAuthStateChanged(onChange)
     return () => unsubscribe()
   }, [])
-  
+
   return state
 }

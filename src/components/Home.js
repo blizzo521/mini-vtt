@@ -1,7 +1,6 @@
-import React, { useContext } from 'react'
+import React from 'react'
 import { useRoutes, navigate } from 'hookrouter'
 
-import { UserContext } from '../contexts/UserContext'
 import Tables from './Tables'
 import Table from './Table'
 import SignIn from './SignIn'
@@ -21,7 +20,6 @@ const routes = {
 }
 
 function Home() {
-  console.log('HOME =====================================')
   const routeResult = useRoutes(routes)
   const { user, initializing} = useAuth()
 
@@ -29,45 +27,35 @@ function Home() {
     return routeResult && routeResult.type === SignIn
   }
 
-console.log('a', user, initializing)
-
-  // dont load anything until auth is done
-  if (initializing !== false) {
-    return (
-      <div className="Home">
-        <Header />
-        <div className="Home__content"></div>
-      </div>
-    )
-  }
-
-  console.log('b', user, initializing, isSignIn() ? 'SignIn' : 'not SignIn')
-
-  // if no auth, send anything not signin to signin
-  if (!user && !isSignIn()) {
-    navigate('/signin')
-    return
-  }
-
-  console.log('c', user, initializing, isSignIn() ? 'SignIn' : 'not SignIn')
-
-  // default to tables
-  if (!routeResult) {
-    navigate('/tables')
-    return
-  }
-
-  console.log('d', user, initializing, isSignIn() ? 'SignIn' : 'not SignIn')
-
   return (
     <div className="Home">
       <Header />
       <div className="Home__content">
-        {routeResult || <div />}
+        {loadContent()}
       </div>
     </div>
   )
 
+  function loadContent() {
+    // dont load anything until auth is resolved
+    if (initializing) {
+      return null
+    }
+
+    // if no auth, send anything not signin to signin
+    if (!user && !isSignIn()) {
+      navigate('/signin')
+      return
+    }
+
+    // defaults and stupidity
+    if ((user && isSignIn()) || !routeResult) {
+      navigate('/tables')
+      return
+    }
+
+    return routeResult || null
+  }
 }
 
 export default Home

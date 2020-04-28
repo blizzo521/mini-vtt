@@ -15,6 +15,8 @@ function Monsters(props) {
     <Box className='Monsters'>
       <p>figure out how to list all the monsters here</p>
       <p>link to a specific monster like this</p>
+
+      {/* Note that A isn't the same as <a></a>, see the import above */}
       <A href={`/monster/${someMonster.id}`}>{someMonster.name}</A>
     </Box>
   )

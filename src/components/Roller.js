@@ -1,4 +1,3 @@
-// src/js/components/Form.jsx
 import React, { useState } from 'react'
 import { useFirestore } from 'react-redux-firebase'
 import Firebase from 'firebase'
@@ -33,7 +32,7 @@ function Roller(props) {
 
   function addTextRoll() {
     try {
-      const roll = roller.roll(value)  
+      const roll = roller.roll(value)
       saveRoll(value, roll.total, roll.toString())
     } catch (error) {
       setFormatError(true)
@@ -48,9 +47,9 @@ function Roller(props) {
     setSaving(true)
     return firestore
       .collection(`/tables/${tableId}/rolls`)
-      .add({ 
-        die: die, 
-        result: result, 
+      .add({
+        die: die,
+        result: result,
         explain: explain,
         createdAt: serverTimestamp() })
       .then(() => {
@@ -84,9 +83,9 @@ function Roller(props) {
         <img onClick={rollD20} src={d20Icon} className='Roller__die' alt='d20' />
       </div>
       <div>
-        <input 
-          type='text' 
-          value={value} 
+        <input
+          type='text'
+          value={value}
           onChange={e => setValue(e.target.value)} />
         <button onClick={addTextRoll}>Roll!</button>
         <div className='Roller__clearAll'>

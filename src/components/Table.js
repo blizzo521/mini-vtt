@@ -1,17 +1,23 @@
 import React from 'react'
 import Rolls from './Rolls'
 
+
 import './Table.css'
 import { useFirestoreConnect, isLoaded } from 'react-redux-firebase'
 import { useSelector } from 'react-redux'
 import { A } from 'hookrouter'
+import { useAuth } from '../hooks/useAuth'
 
 function Table(props) {
+
+  const { user } = useAuth()
+
   useFirestoreConnect(
     [
       {
         collection: 'tables',
-        doc: props.id
+        doc: props.id,
+        where: ["gameMasterId", "==", user.uid]
       },
       {
         collection: `tables/${props.id}/rolls`,

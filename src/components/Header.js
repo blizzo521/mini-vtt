@@ -22,7 +22,7 @@ function Header() {
         <img className='Header__avatar' src={user['photoURL']} alt='avatar' />
         <button onClick={signOutOfGoogle}>Log Out</button>
       </div>
-      
+
     )
   }
 

@@ -17,7 +17,8 @@ function Tables() {
     [
       {
         collection: 'tables',
-        orderBy: ['createdAt', 'desc']
+        orderBy: ['createdAt', 'desc'],
+        where: ["gameMasterId", "==", user && user.uid]
       }
     ]
   )
@@ -32,9 +33,9 @@ function Tables() {
         {resultsContent(tables)}
       </div>
       <div className='Tables__createNew'>
-        <input 
-          type='text' 
-          value={value} 
+        <input
+          type='text'
+          value={value}
           onChange={e => setValue(e.target.value)} />
         <button onClick={createTable}>Create Table</button>
       </div>
@@ -58,11 +59,11 @@ function Tables() {
     if (!isLoaded(tables)) {
       return 'Loading...'
     }
-  
+
     if (isEmpty(tables)) {
       return 'Nothing here, create a table!'
     }
-  
+
     return Object.keys(tables).map((key, i) => {
       const table = tables[key]
       return (

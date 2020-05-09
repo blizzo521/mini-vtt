@@ -13,15 +13,13 @@ function Tables() {
   const firestore = useFirestore()
   const user = Firebase.auth().currentUser
 
-  useFirestoreConnect(
-    [
-      {
-        collection: 'tables',
-        orderBy: ['createdAt', 'desc'],
-        where: ["gameMasterId", "==", user && user.uid]
-      }
-    ]
-  )
+  const firestoreQuery = {
+    collection: 'tables',
+    orderBy: ['createdAt', 'desc'],
+    where: ['players', 'array-contains', user && user.uid]
+  }
+  console.log(firestoreQuery)
+  useFirestoreConnect([firestoreQuery])
 
   const tables = useSelector(({ firestore: { ordered } }) => ordered.tables)
   const [value, setValue] = useState('')

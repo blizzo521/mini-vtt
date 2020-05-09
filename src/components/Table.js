@@ -17,7 +17,7 @@ function Table(props) {
       {
         collection: 'tables',
         doc: props.id,
-        where: ["gameMasterId", "==", user.uid]
+        where: ["gm", "==", user.uid]
       },
       {
         collection: `tables/${props.id}/rolls`,
